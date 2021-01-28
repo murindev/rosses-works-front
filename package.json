@@ -1,0 +1,43 @@
+{
+  "name": "rosses-crm",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "nuxt-ts",
+    "build": "nuxt-ts build",
+    "start": "nuxt-ts start",
+    "generate": "nuxt-ts generate",
+    "test": "jest"
+  },
+  "dependencies": {
+    "@nuxt/typescript-runtime": "^2.0.0",
+    "@nuxtjs/axios": "^5.12.4",
+    "@nuxtjs/laravel-echo": "^1.1.0",
+    "axios": "^0.21.1",
+    "cookie-universal-nuxt": "^2.1.4",
+    "cookieparser": "^0.1.0",
+    "core-js": "^3.6.5",
+    "hey-validator": "^1.1.0",
+    "heyui": "^1.28.0",
+    "js-cookie": "^2.2.1",
+    "lodash.clonedeep": "^4.5.0",
+    "nuxt": "^2.14.6",
+    "nuxt-property-decorator": "^2.8.8",
+    "pusher-js": "4.3",
+    "vue-class-component": "^7.2.6",
+    "vue-property-decorator": "^9.1.2",
+    "vuex-class": "^0.3.2",
+    "vuex-class-component": "^2.3.5",
+    "vuex-module-decorators": "^1.0.1"
+  },
+  "devDependencies": {
+    "@nuxt/types": "^2.14.12",
+    "@nuxt/typescript-build": "^2.0.3",
+    "@vue/test-utils": "^1.1.0",
+    "babel-core": "7.0.0-bridge.0",
+    "babel-jest": "^26.5.0",
+    "jest": "^26.5.0",
+    "ts-jest": "^26.4.1",
+    "vue-jest": "^3.0.4"
+  }
+}

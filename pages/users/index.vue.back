@@ -1,0 +1,196 @@
+<template>
+    <v-card ref="card">
+
+        <HeaderDefault :title="title">
+            <template v-slot:left>
+                <v-dialog v-model="dialog" max-width="500px">
+                    <template v-slot:activator="{ on, attrs }">
+                        <v-btn color="primary" small v-bind="attrs" v-on="on" @click="add">Добавить</v-btn>
+                    </template>
+                    <v-card>
+                        <v-card-title>
+                            <span class="headline">{{ formTitle }}</span>
+                        </v-card-title>
+
+                        <v-card-text>
+                            <v-container>
+                                <form>
+                                    <v-text-field v-model="row.name" label="Роль" required></v-text-field>
+<!--                                    <v-text-field v-model="row.slug" label="slug" required></v-text-field>-->
+                                    <v-switch v-model="row.active" :hide-details="true" :true-value="1" :false-value="0"
+                                              label="Активность"></v-switch>
+                                </form>
+                            </v-container>
+                        </v-card-text>
+
+                        <v-card-actions>
+                            <v-spacer></v-spacer>
+                            <v-btn color="blue darken-1" text @click="close">Отмена</v-btn>
+                            <v-btn color="blue darken-1" text @click="save">Сохранить</v-btn>
+                        </v-card-actions>
+                    </v-card>
+                </v-dialog>
+                <v-dialog v-model="dialogDelete" max-width="500px">
+                    <v-card>
+                        <v-card-title class="headline">Удалить запись?</v-card-title>
+                        <v-card-actions>
+                            <form>
+                                <v-text-field v-model="row.name" label="Роль" disabled></v-text-field>
+                                <v-text-field v-model="row.slug" label="slug" disabled></v-text-field>
+                                <v-btn color="blue darken-1" text @click="closeDelete">Отмена</v-btn>
+                                <v-btn color="blue darken-1" text @click="deleteItemConfirm">Сохранить</v-btn>
+                            </form>
+                        </v-card-actions>
+                    </v-card>
+                </v-dialog>
+                <v-divider class="mx-4" inset vertical></v-divider>
+
+                <v-select
+                        :items="userRoles"
+                        item-text="name"
+                        item-value="id"
+                        hide-details="auto"
+                        solo
+                        class="inherit-select"
+                        label="Standard"
+                ></v-select>
+
+                <v-switch v-model="selectActive" :label="selectActive ? 'Только активные':'Все' " dense
+                          hide-details="auto" color="primary" @change=""/>
+
+
+            </template>
+        </HeaderDefault>
+
+
+        <v-data-table :headers="headers" :fixed-header="true" :height="tableHeight" :items="rows" sort-by="active"
+                      :items-per-page="tableRowsPerPage">
+            <template v-slot:item="{ item }">
+                <tr :class="{inactive : !item.active}">
+                    <td>{{item.id}}</td>
+                    <td><v-switch v-model="item.active" class="inherit" :hide-details="true" disabled></v-switch></td>
+                    <td>{{item.name}}</td>
+                    <td>{{item.email}}</td>
+                    <td>{{item.city}}</td>
+                    <td>{{item.phone}}</td>
+                    <td>{{item.roles}}</td>
+                    <td>
+                        <v-icon small class="mr-2" @click="editItem(item)">mdi-pencil</v-icon>
+                    </td>
+                </tr>
+            </template>
+
+        </v-data-table>
+    </v-card>
+</template>
+
+<script lang="ts">
+    import {Vue, Component, namespace, Watch} from 'nuxt-property-decorator'
+    import {IUser, IUserRole} from "~/types/user";
+
+    const user = namespace('user')
+    const auth = namespace('auth')
+
+
+
+    import HeaderDefault from "~/components/_tpl/HeaderDefault.vue";
+
+    @Component({
+        components: {HeaderDefault}
+    })
+    export default class UsersPage extends Vue {
+        public title: string = 'Пользователи'
+
+        public head() {
+            return {
+                title: this.title,
+                meta: [
+                    {
+                        hid: 'description',
+                        name: 'description',
+                        content: 'Home page description'
+                    }
+                ],
+            }
+        }
+
+
+        public tableHeight: number = 0
+        public tableRowsPerPage: number = 0
+        public search = ''
+
+        @user.State('users') users!: IUser
+        @user.State('userRoles') userRoles!: IUserRole
+        @user.Action('indexUsers') indexUsers!: () => void
+        @user.Action('indexUserRole') indexUserRole!: () => void
+        @user.Action('storeUser') storeUser!: (user: IUser) => void
+
+        public headers = [
+            {text: 'ID', value: 'id'},
+            {text: 'Активность', value: 'active'},
+            {text: 'Имя', value: 'name',},
+            {text: 'email', value: 'email',},
+            {text: 'city', value: 'city',},
+            {text: 'phone', value: 'phone',},
+            {text: 'roles', value: 'roles',},
+            {text: 'Действия', value: 'actions', sortable: false},
+        ]
+        public selectActive: boolean = true
+
+
+        dialog = false;
+        dialogDelete = false;
+
+        rows: IUserRole[] = [];
+
+        row = {} as IUser
+
+        formTitle: string = ''
+
+        @Watch('dialog') onDialog(val: any) {
+            val || this.close()
+        }
+
+        @Watch('dialogDelete') onDialogDelete(val: any) {
+            val || this.closeDelete()
+        }
+
+        add() {
+            this.formTitle = 'Новая запись'
+            this.row = {...{} as IUser}
+        }
+
+        editItem(item: IUser) {
+            this.formTitle = 'Редактировать запись'
+            this.row = item
+            this.dialog = true
+        }
+
+        save() {
+            this.storeUser(this.row)
+            this.close()
+        }
+
+        close() {
+            this.dialog = false
+        }
+
+        deleteItemConfirm() {
+            this.closeDelete()
+        }
+
+        closeDelete() {
+            this.dialogDelete = false
+        }
+
+
+        async mounted() {
+            await this.indexUsers()
+            await this.indexUserRole()
+            this.tableHeight = await this.$cardInner()
+            this.tableRowsPerPage = await this.$tableRowsPerPage()
+            this.rows = await JSON.parse(JSON.stringify(this.users))
+        }
+
+    }
+</script>

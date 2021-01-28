@@ -1,0 +1,391 @@
+@backgroundMain: #f0f2f5;
+@backgroundIn: #fff;
+@border: #eee;
+
+@primary: #45b984;
+@primary-light: rgba(69,185,132,.45);
+@primary-lightest: rgba(69,185,132,.15);
+@red: #e11617;
+@green: #3cb357;
+@yellow: rgba(255, 174, 0, 1);
+@yellow-light: rgba(255, 174, 0, .45);
+@yellow-lightest: rgba(255, 174, 0, .15);
+@blue: #3b91ff;
+
+
+@dark: #333;
+@dark1: #555;
+@dark2: #666;
+@dark3: #777;
+@dark4: #999;
+
+@gray: #c1c1c1;
+@gray1: #d3d3d3;
+@gray2: #eee;
+@gray3: #f3f3f3;
+@gray4: #f5f5f5;
+
+
+@font-face {
+  font-family: 'LigatureSymbols';
+  src: url('../fonts/LigatureSymbols/LigatureSymbols-2.11.eot');
+  src: url('../fonts/LigatureSymbols/LigatureSymbols-2.11.eot?#iefix') format('embedded-opentype'),
+  url('../fonts/LigatureSymbols/LigatureSymbols-2.11.woff') format('woff'),
+  url('../fonts/LigatureSymbols/LigatureSymbols-2.11.ttf') format('truetype'),
+  url('../fonts/LigatureSymbols/LigatureSymbols-2.11.svg#LigatureSymbols') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+// MAIN LAYOUT
+.main-frame {
+  padding: 0!important;
+  height: 100vh!important;
+}
+.main-layout {
+  height: calc(100vh - 50px);
+  margin: 50px 0 0 0;
+  box-sizing: border-box;
+  padding: 12px;
+  overflow-y: auto;
+  background: @backgroundMain;
+
+
+  .main-sider {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    height: 100vh;
+    > ul {
+      margin-top: 60px!important;
+      padding-left: 0;
+    }
+  }
+}
+.main-header {
+  height: 50px;
+  padding: 12px;
+  position: fixed!important;
+  top: 0!important;
+  left: 0;
+  z-index: 100;
+  width: 100%;
+  .header-inner {
+    display: flex;
+    height: 100%;
+    justify-content: space-between;
+    &-left, &-right, &-center {
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+    }
+
+    &-left {
+
+    }
+    &-center {
+
+      justify-content: center;
+    }
+    &-right {
+
+    }
+  }
+}
+
+// FORMS ============================================================
+// buttons
+.h-btn {
+  &.flat {
+    box-shadow: unset;
+  }
+
+}
+
+.fmm.h-form {
+  .h-form {
+    &-item {
+      display: flex;
+      justify-content: flex-end;
+      &-label {
+        width: auto!important;
+        display: inline-flex;
+        padding-right: 3px;
+        white-space: nowrap;
+        > i {
+          padding-right: 4px;
+        }
+
+      }
+      &-content {
+        margin-left: 10px!important;
+      }
+    }
+
+  }
+}
+
+.fmmTable {
+  &-header {
+    &-green {
+      .h-table-header {
+        background: @primary-lightest;
+      }
+
+    }
+  }
+}
+
+
+
+
+
+i.ico {
+  font-family: LigatureSymbols;
+  &:before {
+    content: attr(rel);
+    font-size: inherit;
+  }
+}
+
+.simbol {
+  font-size: 30px;
+}
+.lsf {
+  font-family: 'LigatureSymbols';
+  -webkit-text-rendering: optimizeLegibility;
+  -moz-text-rendering: optimizeLegibility;
+  -ms-text-rendering: optimizeLegibility;
+  -o-text-rendering: optimizeLegibility;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-font-smoothing: antialiased;
+  -ms-font-smoothing: antialiased;
+  -o-font-smoothing: antialiased;
+  font-smoothing: antialiased;
+  -webkit-font-feature-settings: "liga" 1, "dlig" 1;
+  -moz-font-feature-settings: "liga=1, dlig=1";
+  -ms-font-feature-settings: "liga" 1, "dlig" 1;
+  -o-font-feature-settings: "liga" 1, "dlig" 1;
+  font-feature-settings: "liga" 1, "dlig" 1;
+}
+.lsf-icon:before {
+  content:attr(title);
+  margin-right:0.3em;
+  font-size:130%;
+  font-family: 'LigatureSymbols';
+  -webkit-text-rendering: optimizeLegibility;
+  -moz-text-rendering: optimizeLegibility;
+  -ms-text-rendering: optimizeLegibility;
+  -o-text-rendering: optimizeLegibility;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-font-smoothing: antialiased;
+  -ms-font-smoothing: antialiased;
+  -o-font-smoothing: antialiased;
+  font-smoothing: antialiased;
+  -webkit-font-feature-settings: "liga" 1, "dlig" 1;
+  -moz-font-feature-settings: "liga=1, dlig=1";
+  -ms-font-feature-settings: "liga" 1, "dlig" 1;
+  -o-font-feature-settings: "liga" 1, "dlig" 1;
+  font-feature-settings: "liga" 1, "dlig" 1;
+}
+
+// OTHERS
+i.spacer {
+  display: inline-block;
+  height: 100%;
+  width: 0;
+  margin: 0 10px;
+  &.large {
+    margin: 0 20px;
+  }
+  &.gray {
+    border-right: 1px dotted gray;
+  }
+}
+
+.mod {
+  &.middle {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: -50px;
+    background: @backgroundMain;
+  }
+  &-inner {
+    box-sizing: border-box;
+    //padding: 24px;
+    display: inline-block;
+    box-shadow: 0 2px 18px rgba(0,0,0,.1);
+    background: @backgroundIn;
+    border-radius: 3px;
+  }
+}
+
+.h-panel-footer {
+  padding: 20px 20px;
+  border-top: 1px solid @border;
+  position: relative;
+  &.center {
+    text-align: center;
+  }
+  &.right {
+    text-align: right;
+  }
+}
+
+.user-menu {
+  position: relative;
+  height: 100%;
+  > ul {
+    > li:first-of-type {
+      .h-icon-angle-down {
+        display: none;
+      }
+    }
+  }
+
+}
+.h-table-fixed-cover {
+  visibility: hidden;
+}
+
+.table-fix {
+  overflow: auto;
+  position: relative;
+  table {
+    border-collapse: collapse;
+    width: 100%;
+    th, td {
+      overflow: hidden;
+      height: 40px;
+      text-overflow: ellipsis;
+      word-break: break-all;
+      box-sizing: border-box;
+      padding: 3px 0px 3px 8px;
+      vertical-align: middle;
+      width: auto;
+      min-width: 20px;
+      white-space: nowrap;
+      border-top: 1px solid #ecebeb;
+      &:last-of-type {
+        padding-right: 16px;
+      }
+    }
+
+    thead {
+      tr {
+        &:nth-of-type(1) {
+          th {
+            top: 0;
+          }
+        }
+      }
+      th {
+        position: sticky;
+        z-index: 10;
+        background: #d6eae4;
+        overflow: visible;
+        &:before {
+          content: '';
+          display: block;
+          width: 100%;
+          position: absolute;
+          top: -1px;
+          left: 0;
+          height: 1px;
+          background: #d6eae4;
+        }
+        > .h-select {
+          max-width: calc(100% - 30px);
+          width: calc(100% - 30px);
+          margin: 0 auto;
+          overflow: hidden;
+        }
+        .th-top {
+          min-height: 30px;
+        }
+      }
+    }
+    tbody {
+      tr {
+        background: #ffffff;
+        &:hover {
+          background: #eee;
+        }
+      }
+      td {
+        &.center {
+          text-align: center;}
+        &.right {
+          text-align: right;
+        }
+      }
+    }
+  }
+}
+
+.fmm-panel {
+
+  &-bar {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-sizing: border-box;
+    padding: 10px 20px;
+    background: @primary-lightest;
+    border-radius: 3px;
+    border: 1px solid @border;
+
+    &-left {
+      text-align: left;
+    }
+    &-right {
+      text-align: left;
+    }
+
+    &.solo {
+      margin-bottom: 12px;
+    }
+  }
+}
+
+.fmm-form-item-flat {
+  //display: flex;
+  //
+  //width: 100%;
+  //align-items: center;
+  //> * {
+  //  width: 100%;
+  //}
+  //input {
+  //  width: 100%;
+  //}
+}
+
+.form-field {
+
+  textarea ,input {
+    width: 100%;
+  }
+  textarea {
+    min-height: 100px;
+    resize: vertical;
+  }
+  i {
+    display: block;
+    color: @dark2;
+  }
+  &.flat {
+    .h-col {
+      min-height: 40px;
+      display: flex;
+      align-items: center;
+    }
+
+  }
+}
