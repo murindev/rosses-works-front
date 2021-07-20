@@ -24,9 +24,9 @@ export interface ICrudForm {
     filter?: {
         value: any
         condition?:string
-        queryInput?: string // select
+        queryInput?: string
         source?: any
-    } // default
+    }
 
     head?: {
         input?: string
@@ -45,13 +45,6 @@ export interface ICrudFormFilter {
     condition?: string
     value?: any
 }
-
-/*export interface ICrudFormFilter {
-    [key: string ] : {
-        condition?: string
-        value?: any
-    }
-}*/
 
 export interface IMainRequest {
     sort: object

@@ -15,7 +15,7 @@ import {IHRegion} from "~/types/h";
 })
 export default class Hlp extends VuexModule {
 
-// regions ------------------------------------------------------------------
+// regions
     public regions:IHRegion[] = []
     @Mutation setRegions(payload: IHRegion[]){this.regions = payload}
     @Action({commit: 'setRegions'}) async indexRegions() {
@@ -27,17 +27,6 @@ export default class Hlp extends VuexModule {
     @Action({commit: 'setRegions'}) async destroyRegions(obj:any) {
         return await $axios.$get(process.env.serverApi+'helper-region-destroy')
     }
-
-
-// 888888 ------------------------------------------------------------------
-// 888888 ------------------------------------------------------------------
-// 888888 ------------------------------------------------------------------
-// 888888 ------------------------------------------------------------------
-// 888888 ------------------------------------------------------------------
-// 888888 ------------------------------------------------------------------
-
-
-// ROLE index /store / show / destroy 46.188.121.141
 
 
 }

@@ -16,7 +16,7 @@
 
 
     @Component({
-        // middleware: ['JWT']
+        middleware: ['JWT']
     })
     export default class LayoutDefault extends Vue {
 

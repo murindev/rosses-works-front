@@ -26,16 +26,4 @@ export default class Messages extends VuexModule {
         return await $axios.$post(process.env.serverApi+'message/simplePrivate', payload )
     }
 
-/*// index ------------------------------------------------------------------
-    public privateUserUpdate = {}
-        @Mutation setPrivateUserUpdate(payload?:any){this.privateUserUpdate = payload}
-        @Action({commit: 'setprivateUserUpdate'}) async indexPrivateUserUpdate() {
-            return await $axios.$post(process.env.serverApi+'messages-privateUserUpdate')
-        }*/
-
-// index ------------------------------------------------------------------
-// store ------------------------------------------------------------------
-// show ------------------------------------------------------------------
-// destroy ------------------------------------------------------------------
-// Sample ------------------------------------------------------------------
 }

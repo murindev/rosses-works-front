@@ -42,8 +42,15 @@ export default {
     // Modules (https://go.nuxtjs.dev/config-modules)
     modules: ['@nuxtjs/axios', 'cookie-universal-nuxt','@nuxtjs/laravel-echo'],
     axios: {
-        baseURL: process.env.SERVER_URL
+        // baseURL: process.env.SERVER_URL,
+        proxy: true
     },
+
+    proxy: {
+        '/api/': { target: 'http://194.87.232.56', pathRewrite: {'^/api/': ''}, changeOrigin: true }, // , pathRewrite: {'^/api/': ''}
+        '/broadcasting/auth/': { target: 'http://194.87.232.56', pathRewrite: {'^/broadcasting/auth/': ''}, changeOrigin: true } // , pathRewrite: {'^/api/': ''}
+    },
+
     echo: {
         plugins: [ '~/plugins/echo.client' ],
     },

@@ -111,7 +111,7 @@
             }
 
             try {
-                let response = await this.$axios.$post(process.env.serverUrl + 'api/auth/login', {
+                let response = await this.$axios.$post(process.env.serverApi + 'auth/login', {
                     email: this.form.model.email,
                     password: this.form.model.password
                 })

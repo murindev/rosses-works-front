@@ -19,10 +19,12 @@ const JWT: Middleware = (context) => {
             console.log('in now  ',new Date().getTime());
             console.log('in token',Token.exp * 1000);
         } else {
-            context.redirect('/login')
+            // context.redirect('/login')
+            console.log('1111');
         }
     } catch (e) {
-        context.redirect('/login')
+        // context.redirect('/login')
+        console.log('2222');
     }
 
 

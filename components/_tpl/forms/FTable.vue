@@ -34,13 +34,9 @@
 
 
                                 </template>
-                                <!--                         <template v-else-if="column.filter.queryInput === 'checkbox'"></template>
-                                                         <template v-else-if="column.filter.queryInput === 'sdsdsd'"></template>
-                                                         <template v-else>
-                                                             <input type="text" v-model="column.filter.value">
-                                                         </template>-->
+
                                 <template v-else>
-                                    fff
+                                  Нет значений
                                 </template>
                             </div>
                             <div v-else-if="checkIfFilters">&nbsp;</div>
@@ -116,7 +112,6 @@
     import {Component, Vue, namespace, Prop, Watch} from 'nuxt-property-decorator'
     import {ICrudForm, ICrudFormSort} from "~/types/_service";
 
-    //const Example = namespace('Example')
 
     @Component({
         components: {}

@@ -4,9 +4,6 @@ export interface IUser {
     roles?: number[]
     name?: string
     email?: string
-    // email_verified_at
-    // password
-    // remember_token
     color?: string
     text_color?: string
     city?: number
